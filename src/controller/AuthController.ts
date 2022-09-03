@@ -34,7 +34,7 @@ class AuthController {
              config.jwtSecret,
              {expiresIn: "1h"}
         )
-
+        console.log(token)
         return res.send(token)
     } 
 
@@ -51,7 +51,7 @@ class AuthController {
         let user: User
 
         try {
-            user = await userRepository.findOneOrFail(id)
+            user = await userRepository.findOneOrFail({where: id})
         } catch (error) {
             return res.status(401).send("User not found")
         }

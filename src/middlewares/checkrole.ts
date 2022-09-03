@@ -10,7 +10,7 @@ export const checkRole = (roles: Array<string>) => {
         let user: User;
 
         try {
-            user = await userRespository.findOneOrFail(id);
+            user = await userRespository.findOneOrFail({where: id});
         } catch (error: any) {
             res.status(401).send(error.message);
         }

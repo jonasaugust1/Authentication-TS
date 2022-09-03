@@ -4,25 +4,25 @@ import {checkJwt} from "../middlewares/checkjwt";
 import {checkRole} from "../middlewares/checkrole";
 
 const router = Router();
-router.get("/", [checkJwt, checkRole["ADMIN"]], UserController.listAll);
+router.get("/", [checkJwt, checkRole(["ADMIN"])], UserController.listAll);
 
 router.get(
     "/:id([0-9]+)",
-    [checkJwt, checkRole["ADMIN"]],
-    UserController.getOneByID
+    [checkJwt, checkRole(["ADMIN"])],
+    UserController.getOneById
 );
 
-router.post("/", [checkJwt, checkRole["ADMIN"]], UserController.newUser);
+router.post("/", [checkJwt, checkRole(["ADMIN"])], UserController.newUser);
 
 router.put(
     "/:id([0-9]+)",
-    [checkJwt, checkRole["ADMIN"]],
+    [checkJwt, checkRole(["ADMIN"])],
     UserController.editUser
 );
 
 router.delete(
     "/id:([0-9]+)",
-    [checkJwt, checkRole["ADMIN"]],
+    [checkJwt, checkRole(["ADMIN"])],
     UserController.deleteUser
 )
 
